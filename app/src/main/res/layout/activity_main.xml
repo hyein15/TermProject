@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center" >
+
+    <!-- 버튼 작업 -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/task"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300px"
+            android:layout_height="200px"
+            android:text="task" />
+
+        <Button
+            android:id="@+id/log"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300px"
+            android:layout_height="200px"
+            android:text="log" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/note"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300px"
+            android:layout_height="200px"
+            android:text="note" />
+
+        <Button
+            android:id="@+id/report"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300px"
+            android:layout_height="200px"
+            android:text="report" />
+    </LinearLayout>
+
+</LinearLayout>
+
