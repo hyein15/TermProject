@@ -90,35 +90,43 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal">
 
-        <CheckBox
-            android:id="@+id/eat"
-            android:layout_width="135px"
-            android:layout_height="100px"
-            android:text="eat" />
+        <RadioGroup
+            android:id="@+id/doing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <CheckBox
-            android:id="@+id/move"
-            android:layout_width="135px"
-            android:layout_height="100px"
-            android:text="move" />
+            <RadioButton
+                android:id="@+id/eat"
+                android:layout_width="135px"
+                android:layout_height="100px"
+                android:text="eat" />
 
-        <CheckBox
-            android:id="@+id/study"
-            android:layout_width="135px"
-            android:layout_height="100px"
-            android:text="study" />
+            <RadioButton
+                android:id="@+id/move"
+                android:layout_width="135px"
+                android:layout_height="100px"
+                android:text="move" />
 
-        <CheckBox
-            android:id="@+id/work"
-            android:layout_width="135px"
-            android:layout_height="100px"
-            android:text="work" />
+            <RadioButton
+                android:id="@+id/study"
+                android:layout_width="135px"
+                android:layout_height="100px"
+                android:text="study" />
 
-        <CheckBox
-            android:id="@+id/game"
-            android:layout_width="135px"
-            android:layout_height="100px"
-            android:text="game" />
+            <RadioButton
+                android:id="@+id/work"
+                android:layout_width="135px"
+                android:layout_height="100px"
+                android:text="work" />
+
+            <RadioButton
+                android:id="@+id/game"
+                android:layout_width="135px"
+                android:layout_height="100px"
+                android:text="game" />
+
+        </RadioGroup>
 
         </LinearLayout>
 
@@ -143,7 +151,7 @@
         android:layout_height="130dp">
 
         <EditText
-            android:id="@+id/location"
+            android:id="@+id/memo"
             android:minLines="6"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -158,26 +166,35 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal">
-
-        <CheckBox
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <RadioButton
             android:id="@+id/good"
             android:layout_width="135px"
             android:layout_height="100px"
             android:text="good" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/soso"
             android:layout_width="135px"
             android:layout_height="100px"
             android:text="so-so" />
 
-        <CheckBox
+        <RadioButton
             android:id="@+id/bad"
             android:layout_width="135px"
             android:layout_height="100px"
             android:text="bad" />
-
+    </RadioGroup>
         </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="right" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -185,11 +202,23 @@
         android:gravity="center_vertical|center_horizontal">
 
         <Button
+            android:id="@+id/save"
             android:layout_width="100sp"
             android:layout_height="60sp"
-            android:id="@+id/save"
             android:text="SAVE!!"
             />
+
+        <!--TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE!!"
+            android:id="@+id/test"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE!!"
+            android:id="@+id/test2"/-->
 
         </LinearLayout>
 
