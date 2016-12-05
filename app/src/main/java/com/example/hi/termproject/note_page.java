@@ -13,7 +13,6 @@ import android.widget.Toast;
  */
 public class note_page extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -21,32 +20,35 @@ public class note_page extends AppCompatActivity {
 
         setContentView(R.layout.activity_note_page);
 
-        final Spinner spinner1 = (Spinner)findViewById(R.id.mySpinner1);
-        ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this,R.array.year, android.R.layout.simple_spinner_item);
+        final Spinner spinner1 = (Spinner) findViewById(R.id.mySpinner1);
+        ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this, R.array.year, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
 
-        final Spinner spinner2 = (Spinner)findViewById(R.id.mySpinner2);
-        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this,R.array.month, android.R.layout.simple_spinner_item);
+        final Spinner spinner2 = (Spinner) findViewById(R.id.mySpinner2);
+        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.month, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
-        final Spinner spinner3 = (Spinner)findViewById(R.id.mySpinner3);
-        ArrayAdapter adapter3 = ArrayAdapter.createFromResource(this,R.array.day, android.R.layout.simple_spinner_item);
+        final Spinner spinner3 = (Spinner) findViewById(R.id.mySpinner3);
+        ArrayAdapter adapter3 = ArrayAdapter.createFromResource(this, R.array.day, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter3);
 
-        Button btn = (Button)findViewById(R.id.myButton);
+        Button btn = (Button) findViewById(R.id.myButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(note_page.this,
-                        spinner1.getSelectedItem() + " " + spinner2.getSelectedItem()+" " +spinner3.getSelectedItem()+" 을 선택하셨습니다.",
+                        spinner1.getSelectedItem() + " " + spinner2.getSelectedItem() + " " + spinner3.getSelectedItem() + " 을 선택하셨습니다.",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
+
     }
 }
+
+
 
 

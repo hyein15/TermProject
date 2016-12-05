@@ -60,6 +60,7 @@
 
 </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -190,11 +191,7 @@
     </RadioGroup>
         </LinearLayout>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_gravity="right" />
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -208,17 +205,6 @@
             android:text="SAVE!!"
             />
 
-        <!--TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAVE!!"
-            android:id="@+id/test"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SAVE!!"
-            android:id="@+id/test2"/-->
 
         </LinearLayout>
 

@@ -22,8 +22,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE mylogger (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, time TEXT, exe_time INTEGER , doing TEXT, feel TEXT, memo TEXT, " +
-                "lat INTEGER, long INTEGER);");
+        db.execSQL("CREATE TABLE myDB (_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, time TEXT, exe_time INTEGER , doing TEXT, feel TEXT, memo TEXT, " +
+                "address TEXT);");
         Toast.makeText(context, "DB 생성 완료", Toast.LENGTH_SHORT).show();
     }
 
@@ -32,6 +32,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-}
+    public void insert(String date, String time, long exe_time, String doing , String feel, String memo, String address) {
+        // 읽고 쓰기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO myDB VALUES(null, '" + date + "', '"  + time + "', '" + exe_time + "', '"  + doing + "', '"  + feel+ "'" +
+                ", '"  + memo + "', '"  + address + "');");
+        Toast.makeText(context, "DB 입력 완료", Toast.LENGTH_SHORT).show();
+        db.close();
+    }
 
+
+}
 

@@ -29,21 +29,25 @@ public class task_page extends AppCompatActivity {
     Button myBtnReset;
     Button save;
     RadioGroup rg;
-    TextView test,test2;
-    EditText memo;
 
     final static int Init =0;
     final static int Run =1;
     final static int Pause =2;
-
+    static double longitude ;
+    static double latitude ;
+    static String address="";
+    static long exe_time =0;
+    static String doing = "";
+    static  String feel = "";
+    static String memo_str= "";
     int cur_Status = Init;
     int myCount=1;
     long myBaseTime;
     long myPauseTime;
-
-
     DBHelper helper;
     SQLiteDatabase db;
+
+
 
 
     @Override
@@ -60,21 +64,21 @@ public class task_page extends AppCompatActivity {
         myBtnReset = (Button) findViewById(R.id.btn_reset);
         save = (Button) findViewById(R.id.save);
         rg= (RadioGroup) findViewById(R.id.doing);
-        test = (TextView) findViewById(R.id.test);
-        test2 = (TextView) findViewById(R.id.test2);
+
 
         EditText etDate = (EditText) findViewById(R.id.date);
         EditText etTime = (EditText) findViewById(R.id.time);
         final EditText memo = (EditText)findViewById(R.id.memo);
 
         long now = System.currentTimeMillis();
-        Date date = new Date(now);
+        final Date date = new Date(now);
+
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-        SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("HH시 mm분 ss초");
+        SimpleDateFormat simpleTimeFormat = new SimpleDateFormat("HH시 mm분");
 
-        //String strNow = simpleDateFormat.format(date); //2016년12월03일
-
+        final String str_date = simpleDateFormat.format(date); //2016년12월03일
+        final String str_time = simpleTimeFormat.format(date);
         etDate.setText(simpleDateFormat.format(date));
         etTime.setText(simpleTimeFormat.format(date));
 
@@ -125,27 +129,33 @@ public class task_page extends AppCompatActivity {
             }
         });
 
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DBHelper dbHelper = new DBHelper(getApplicationContext(), "mylogger.db", null, 1);
+                final DBHelper dbHelper = new DBHelper(getApplicationContext(), "myDB.db", null, 1);
 
-                String memo_str = memo.getText().toString(); //메모 저장
+                memo_str = memo.getText().toString(); //메모 저장
 
                 gps = new GpsInfo(task_page.this);
 
                 if (gps.isGetLocation()) {
 
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude(); //경도위도저장
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude(); //경도위도저장
+                    address = gps.getAddress();
 
-                   // String a = "위도="+ String.valueOf(latitude)+ " 경도="+String.valueOf(longitude);
-
-                   // test.setText(a);
 
                 } else {
                     gps.showSettingsAlert();
                 }
+
+
+                Toast.makeText(task_page.this, "날짜: " + str_date+"\n" +"시간: " + str_time+"\n"+
+                        "수행시간: " + exe_time+"\n"+ "한 일: " +doing+"\n"+ "기분: "+ feel+"\n"+ "메모:" + memo_str+"\n"+
+                        "위치: " + address, Toast.LENGTH_LONG).show();
+
+                dbHelper.insert(str_date, str_time , exe_time , doing, feel, memo_str,address);
 
             }
         });
@@ -154,17 +164,17 @@ public class task_page extends AppCompatActivity {
 
     public void printChecked_1(View v){
         RadioButton ra = (RadioButton) v;
-        String resultText_1 = "";
+
         if (ra.isChecked()){
-            resultText_1 = ra.getText().toString(); // 어떤 일 했는지 저장
+            doing = ra.getText().toString(); // 어떤 일 했는지 저장
         }
     }
 
     public void printChecked_2(View v){
         RadioButton ra = (RadioButton) v;
-        String resultText_2 = "";
+
         if (ra.isChecked()){
-            resultText_2 = ra.getText().toString(); // 어떤 기분인지 저장
+            feel = ra.getText().toString(); // 어떤 기분인지 저장
         }
     }
 
@@ -240,8 +250,16 @@ public class task_page extends AppCompatActivity {
         long min = outTime/1000 / 60;
         long sec = (outTime/1000)%60; //시,분,초 저장
 
+        String s_hour = String.valueOf(hour);
+        String s_min = String.valueOf(min);
+        String s_sec = String.valueOf(sec);
+
+        exe_time = outTime;
+
         return easy_outTime;
     }
+
+
 
 }
 
