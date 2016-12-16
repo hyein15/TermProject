@@ -46,7 +46,8 @@ public class task_page extends AppCompatActivity {
     long myPauseTime;
     DBHelper helper;
     SQLiteDatabase db;
-
+    long outTime=0;
+    long now=0;
 
 
 
@@ -70,8 +71,8 @@ public class task_page extends AppCompatActivity {
         EditText etTime = (EditText) findViewById(R.id.time);
         final EditText memo = (EditText)findViewById(R.id.memo);
 
-        long now = System.currentTimeMillis();
-        final Date date = new Date(now);
+        final long[] now = {System.currentTimeMillis()};
+        final Date date = new Date(now[0]);
 
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -157,6 +158,11 @@ public class task_page extends AppCompatActivity {
 
                 dbHelper.insert(str_date, str_time , exe_time , doing, feel, memo_str,address);
 
+                myOutput.setText("00:00:00:00");
+               memo.setText(null);
+
+
+
             }
         });
 
@@ -183,6 +189,8 @@ public class task_page extends AppCompatActivity {
             case R.id.btn_start:
                 switch (cur_Status) {
                     case Init:
+
+
                         myBaseTime = SystemClock.elapsedRealtime();
                         System.out.println(myBaseTime);
 
@@ -242,8 +250,8 @@ public class task_page extends AppCompatActivity {
     };
 
     String getTimeOut(){
-        long now = SystemClock.elapsedRealtime();
-        long outTime = now - myBaseTime;
+        now = SystemClock.elapsedRealtime();
+        outTime = now - myBaseTime;
         String easy_outTime = String.format("%02d:%02d:%02d:%02d", outTime/(1000*60*60)%24, outTime/1000 / 60, (outTime/1000)%60,(outTime%1000)/10);
 
         long hour = outTime/(1000*60*60)%24;

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -13,12 +14,21 @@ import android.widget.Toast;
  */
 public class note_page extends AppCompatActivity {
 
+
+    static String year="";
+    static String month="";
+   static String day="";
+
+    TextView result;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_note_page);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "myDB.db", null, 1);
 
         final Spinner spinner1 = (Spinner) findViewById(R.id.mySpinner1);
         ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this, R.array.year, android.R.layout.simple_spinner_item);
@@ -42,11 +52,24 @@ public class note_page extends AppCompatActivity {
                 Toast.makeText(note_page.this,
                         spinner1.getSelectedItem() + " " + spinner2.getSelectedItem() + " " + spinner3.getSelectedItem() + " 을 선택하셨습니다.",
                         Toast.LENGTH_SHORT).show();
+                year = (String) spinner1.getSelectedItem();
+                month = (String) spinner2.getSelectedItem();
+                day = (String) spinner3.getSelectedItem();
+
+
+
+
+                final TextView result = (TextView) findViewById(R.id.DBview);
+
+                result.setText(dbHelper.getResult(year,month,day));
             }
+
         });
 
 
     }
+
+
 }
 
 
