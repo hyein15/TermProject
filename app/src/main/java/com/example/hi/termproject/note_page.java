@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +16,11 @@ import android.widget.Toast;
 public class note_page extends AppCompatActivity {
 
 
+    TextView result;
+
     static String year="";
     static String month="";
-   static String day="";
-
-    TextView result;
+    static String day="";
 
 
     @Override
@@ -28,12 +29,14 @@ public class note_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_note_page);
+
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "myDB.db", null, 1);
 
         final Spinner spinner1 = (Spinner) findViewById(R.id.mySpinner1);
         ArrayAdapter adapter1 = ArrayAdapter.createFromResource(this, R.array.year, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
+
 
         final Spinner spinner2 = (Spinner) findViewById(R.id.mySpinner2);
         ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.month, android.R.layout.simple_spinner_item);
@@ -44,6 +47,8 @@ public class note_page extends AppCompatActivity {
         ArrayAdapter adapter3 = ArrayAdapter.createFromResource(this, R.array.day, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter3);
+
+        final TextView result = (TextView) findViewById(R.id.DBview);
 
         Button btn = (Button) findViewById(R.id.myButton);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -56,15 +61,24 @@ public class note_page extends AppCompatActivity {
                 month = (String) spinner2.getSelectedItem();
                 day = (String) spinner3.getSelectedItem();
 
-
-
-
-                final TextView result = (TextView) findViewById(R.id.DBview);
-
-                result.setText(dbHelper.getResult(year,month,day));
+                result.setText(dbHelper.getResult_note(year,month,day));
             }
 
         });
+
+        Button btn_delete = (Button) findViewById(R.id.delete_btn);
+        btn_delete.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                EditText delete_text = (EditText) findViewById(R.id.delete_text);
+                String delete_number = delete_text.getText().toString();
+                Toast.makeText(note_page.this, delete_number + "번을 지우셨습니다", Toast.LENGTH_SHORT).show();
+                dbHelper.delete(delete_number);
+                result.setText(dbHelper.getResult_log(year,month,day));
+
+            }
+        });
+
+
 
 
     }

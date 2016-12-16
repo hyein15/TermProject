@@ -2,9 +2,6 @@
 <resources>
 
     <string-array name="year">
-        <item>2013년</item>
-        <item>2014년</item>
-        <item>2015년</item>
         <item>2016년</item>
     </string-array>
 

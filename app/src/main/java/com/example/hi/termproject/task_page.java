@@ -254,13 +254,7 @@ public class task_page extends AppCompatActivity {
         outTime = now - myBaseTime;
         String easy_outTime = String.format("%02d:%02d:%02d:%02d", outTime/(1000*60*60)%24, outTime/1000 / 60, (outTime/1000)%60,(outTime%1000)/10);
 
-        long hour = outTime/(1000*60*60)%24;
-        long min = outTime/1000 / 60;
-        long sec = (outTime/1000)%60; //시,분,초 저장
 
-        String s_hour = String.valueOf(hour);
-        String s_min = String.valueOf(min);
-        String s_sec = String.valueOf(sec);
 
         exe_time = outTime;
 
